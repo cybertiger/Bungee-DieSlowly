@@ -1,0 +1,4 @@
+name: DieSlowly
+main : org.cyberiantiger.minecraft.dieslowly.Main
+version: ${version}
+author: cybertiger
