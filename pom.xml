@@ -6,7 +6,7 @@
 
     <groupId>org.cyberiantiger.minecraft</groupId>
     <artifactId>die-slowly</artifactId>
-    <version>1.0</version>
+    <version>1.1-SNAPSHOT</version>
 
     <build>
         <defaultGoal>clean install</defaultGoal>
@@ -47,8 +47,8 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>2.4</version>
                 <configuration>
-                    <source>1.7</source>
-                    <target>1.7</target>
+                    <source>1.6</source>
+                    <target>1.6</target>
                     <compilerArguments>
                         <O>-Xlint:all</O>
                         <O>-Xlint:-path</O>
