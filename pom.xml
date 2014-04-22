@@ -4,7 +4,7 @@
 
     <groupId>org.cyberiantiger.minecraft</groupId>
     <artifactId>die-slowly</artifactId>
-    <version>1.1</version>
+    <version>1.2-SNAPSHOT</version>
     <scm>
         <url>https://github.com/cybertiger/Bungee-DieSlowly/</url>
         <connection>scm:git:git://github.com/cybertiger/Bungee-DieSlowly.git</connection>
