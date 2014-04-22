@@ -4,6 +4,7 @@
  */
 package org.cyberiantiger.minecraft.dieslowly;
 
+import net.md_5.bungee.BungeeCord;
 import net.md_5.bungee.api.event.PlayerDisconnectEvent;
 import net.md_5.bungee.api.plugin.Listener;
 import net.md_5.bungee.api.plugin.Plugin;
@@ -41,6 +42,7 @@ public class Main extends Plugin implements Listener {
                 throw new IllegalStateException("Already dying slowly!");
             dieSlowly = true;
         }
+        BungeeCord.getInstance().stopListeners();
         if (getProxy().getOnlineCount() == 0) {
             shutdown();
         }
