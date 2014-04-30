@@ -7,6 +7,10 @@
     <groupId>org.cyberiantiger.minecraft</groupId>
     <artifactId>die-slowly</artifactId>
     <version>1.1-SNAPSHOT</version>
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.build.number>${user.name}</project.build.number>
+    </properties>
     <scm>
         <url>https://github.com/cybertiger/Bungee-DieSlowly/</url>
         <connection>scm:git:git://github.com/cybertiger/Bungee-DieSlowly.git</connection>
