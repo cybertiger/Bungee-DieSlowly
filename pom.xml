@@ -8,6 +8,7 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.build.number>${user.name}</project.build.number>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
     <scm>
         <url>https://github.com/cybertiger/Bungee-DieSlowly/</url>
@@ -91,10 +92,6 @@
             <version>1.7.2.2</version>
         </dependency>
     </dependencies>
-
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    </properties>
 
     <distributionManagement>
         <repository>
