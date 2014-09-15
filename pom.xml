@@ -9,8 +9,6 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.build.number>${user.name}</project.build.number>
     </properties>
-=======
->>>>>>> 5f8b7de05304db04ba6a13fca0180ac7bc35d8ca
     <scm>
         <url>https://github.com/cybertiger/Bungee-DieSlowly/</url>
         <connection>scm:git:git://github.com/cybertiger/Bungee-DieSlowly.git</connection>
