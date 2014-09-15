@@ -5,10 +5,15 @@
 package org.cyberiantiger.minecraft.dieslowly;
 
 import net.md_5.bungee.BungeeCord;
+import net.md_5.bungee.api.ProxyServer;
+import net.md_5.bungee.api.ServerPing;
 import net.md_5.bungee.api.event.PlayerDisconnectEvent;
+import net.md_5.bungee.api.event.ProxyPingEvent;
 import net.md_5.bungee.api.plugin.Listener;
 import net.md_5.bungee.api.plugin.Plugin;
 import net.md_5.bungee.event.EventHandler;
+
+import java.lang.reflect.Field;
 
 /**
  *
@@ -16,6 +21,7 @@ import net.md_5.bungee.event.EventHandler;
  */
 public class Main extends Plugin implements Listener {
     private boolean dieSlowly = false;
+    private ProxyServer oldInstance;
 
     @Override
     public void onLoad() {
@@ -33,7 +39,9 @@ public class Main extends Plugin implements Listener {
 
     private void shutdown() {
         getLogger().info("Shutting down, no remaining players connected");
-        getProxy().stop();
+        this.oldInstance.stop();
+        this.oldInstance = null;
+        dieSlowly = false;
     }
 
     public void dieSlowly() {
@@ -42,8 +50,20 @@ public class Main extends Plugin implements Listener {
                 throw new IllegalStateException("Already dying slowly!");
             dieSlowly = true;
         }
-        BungeeCord.getInstance().stopListeners();
-        if (getProxy().getOnlineCount() == 0) {
+        this.oldInstance = ProxyServer.getInstance();
+        try{
+            BungeeCord bungeeCord = new BungeeCord();
+            ProxyServer.setInstance(bungeeCord);
+            bungeeCord.start();
+            for(Plugin plugin : this.oldInstance.getPluginManager().getPlugins()){
+                Field f = plugin.getClass().getDeclaredField("proxy");
+                f.setAccessible(true);
+                f.set(plugin, ProxyServer.getInstance());
+            }
+        }catch (Exception e){
+
+        }
+        if (this.oldInstance.getOnlineCount() == 0) {
             shutdown();
         }
     }
@@ -57,8 +77,17 @@ public class Main extends Plugin implements Listener {
         }
         // This event is fired during disconnect whilst the player
         // still counts towards the online count.
-        if (getProxy().getOnlineCount() <= 1) {
+        if(this.oldInstance == null) return;
+        if (this.oldInstance.getOnlineCount() <= 1) {
             shutdown();
         }
+    }
+
+    @EventHandler
+    public void onPing(ProxyPingEvent e){
+        if(this.oldInstance == null) return;
+        ServerPing.Players p = e.getResponse().getPlayers();
+        p.setOnline(oldInstance.getOnlineCount()+ProxyServer.getInstance().getOnlineCount());
+        e.getResponse().setPlayers(p);
     }
 }
