@@ -51,6 +51,7 @@ public class Main extends Plugin implements Listener {
             dieSlowly = true;
         }
         this.oldInstance = ProxyServer.getInstance();
+        BungeeCord.getInstance().stopListeners();
         try{
             BungeeCord bungeeCord = new BungeeCord();
             ProxyServer.setInstance(bungeeCord);
